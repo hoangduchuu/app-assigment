@@ -9,7 +9,7 @@ import com.hdhuu.data.post.models.CandyDTO
 @Database(entities = [CandyDTO::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun postDAO(): CandyDAO
+    abstract fun candyDAO(): CandyDAO
 
     private var INSTANCE: AppDatabase? = null
 
