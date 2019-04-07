@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.candy_item.view.*
  * Created by Huu Hoang on 3/31/19.
  */
 
-class CandyAdapter(val candies: ArrayList<Candy>, val context: Context) :
+class CandyAdapter(var candies: ArrayList<Candy>, val context: Context) :
     RecyclerView.Adapter<CandyAdapter.ViewHolder>() {
 
     // Gets the number of datas in the list
@@ -34,6 +34,10 @@ class CandyAdapter(val candies: ArrayList<Candy>, val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.counter.text = candies[position].eatingCount.toString()
         holder.bg.setBackgroundColor(holder.itemView.context.getColor(R.color.abc_btn_colored_borderless_text_material))
+    }
+
+    fun setdata(data: ArrayList<Candy>) {
+        candies = data
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

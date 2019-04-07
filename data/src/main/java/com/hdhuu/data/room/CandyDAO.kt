@@ -6,6 +6,7 @@ import com.hdhuu.data.post.models.CandyDTO
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Maybe
+import io.reactivex.Single
 
 @Dao
 abstract class CandyDAO {
@@ -21,8 +22,15 @@ abstract class CandyDAO {
     @Query("DELETE FROM candy")
     abstract fun clearCandy()
 
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertCandy(candyDTO: CandyDTO?): Completable
+    abstract fun insertUser(user: CandyDTO): Completable
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract fun insertCandy(candyDTO: CandyDTO): Completable
+
+    @Insert
+    abstract fun insertMultiCandy(candies : List<CandyDTO>): Completable
 
     @Query(" delete from candy where id =:sugarId")
     abstract fun removeSugarById(sugarId: Int)

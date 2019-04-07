@@ -11,22 +11,22 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun candyDAO(): CandyDAO
 
-    private var INSTANCE: AppDatabase? = null
+    companion object {
 
-    private val sLock = Any()
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
 
-    fun getInstance(context: Context): AppDatabase {
-        if (INSTANCE == null) {
-            synchronized(sLock) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-                            AppDatabase::class.java, "appDB.db")
-                            .build()
-                }
-                return INSTANCE!!
+        fun getInstance(context: Context): AppDatabase =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
             }
-        }
-        return INSTANCE!!
+
+        private fun buildDatabase(context: Context) =
+            Room.databaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java, "acandy.dbm"
+            )
+                .build()
     }
 
 }
