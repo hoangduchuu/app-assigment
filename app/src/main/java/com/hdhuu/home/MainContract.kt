@@ -10,6 +10,8 @@ interface MainContract{
     interface View{
         fun onGetDataSuccess(data: List<Candy>)
         fun fetchData()
+        fun showEmptyView()
+        fun hideEmptyView()
     }
     interface Presenter{
         fun getCandies()

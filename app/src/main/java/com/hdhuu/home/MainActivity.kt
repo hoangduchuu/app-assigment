@@ -2,9 +2,7 @@ package com.hdhuu.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hdhuu.R
 import com.hdhuu.models.Candy
@@ -22,11 +20,12 @@ class MainActivity : AppCompatActivity(), MainContract.View{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ln.setOnLongClickListener(appLongClickListener)
+        viewNodata.setOnClickListener(onGenerateButtonCLickListener)
 
         fetchData()
 
         setupRV()
+
 
     }
 
@@ -37,9 +36,8 @@ class MainActivity : AppCompatActivity(), MainContract.View{
         rv.adapter = candyAdapter
     }
 
-    private val appLongClickListener = View.OnLongClickListener {
+    private val onGenerateButtonCLickListener = View.OnClickListener {
         presenter.createSampleCandies()
-        return@OnLongClickListener true
     }
 
 
@@ -52,5 +50,13 @@ class MainActivity : AppCompatActivity(), MainContract.View{
         candyAdapter.setdata(data)
         candyAdapter.notifyDataSetChanged()
 
+    }
+
+    override fun showEmptyView() {
+        viewNodata.visibility = View.VISIBLE
+    }
+
+    override fun hideEmptyView() {
+        viewNodata.visibility = View.GONE
     }
 }

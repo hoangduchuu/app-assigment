@@ -8,6 +8,17 @@
         android:id="@+id/ln"
         android:layout_height="wrap_content"
         tools:context=".home.MainActivity">
+    <Button
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:id="@+id/viewNodata"
+            android:textColor="#64FFDA"
+            android:visibility="gone"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not data? CLick here to generate"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:orientation="vertical"

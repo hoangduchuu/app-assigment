@@ -20,7 +20,12 @@ class MainPresenter(
             override fun onComplete() {}
 
             override fun onNext(t: List<CandyEntity>) {
+                if (t.isEmpty()) {
+                    view.showEmptyView()
+                    return
+                }
                 view.onGetDataSuccess(candyMapper.mapToViewModel(t))
+                view.hideEmptyView()
             }
 
             override fun onError(e: Throwable) {}
