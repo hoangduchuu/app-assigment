@@ -2,6 +2,7 @@ package com.hdhuu.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hdhuu.R
@@ -10,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class MainActivity : AppCompatActivity(), MainContract.View{
+class MainActivity : AppCompatActivity(), MainContract.View, CandyItemClickListener{
     private var data: ArrayList<Candy> = ArrayList()
 
     private val presenter: MainContract.Presenter  by inject { parametersOf(this) }
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity(), MainContract.View{
         rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rv.addItemDecoration(ListPaddingDecoration(this, 12, 12))
         rv.adapter = candyAdapter
+        candyAdapter.setListener(this)
     }
 
     private val onGenerateButtonCLickListener = View.OnClickListener {
@@ -58,5 +60,9 @@ class MainActivity : AppCompatActivity(), MainContract.View{
 
     override fun hideEmptyView() {
         viewNodata.visibility = View.GONE
+    }
+
+    override fun onItemClicked(candy: Candy) {
+        presenter.increaseEatingCount(candy)
     }
 }

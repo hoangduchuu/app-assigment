@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.candy_item.view.*
 
 class CandyAdapter(var candies: ArrayList<Candy>, val context: Context) :
     RecyclerView.Adapter<CandyAdapter.ViewHolder>() {
+    lateinit var mListener: CandyItemClickListener
 
     // Gets the number of datas in the list
     override fun getItemCount(): Int {
@@ -34,10 +35,17 @@ class CandyAdapter(var candies: ArrayList<Candy>, val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.counter.text = candies[position].eatingCount.toString()
         holder.bg.setBackgroundColor(holder.itemView.context.getColor(R.color.abc_btn_colored_borderless_text_material))
+        holder.itemView.setOnClickListener {
+            mListener.onItemClicked(candies[position])
+        }
     }
 
     fun setdata(data: ArrayList<Candy>) {
         candies = data
+    }
+
+    fun setListener(listener: CandyItemClickListener) {
+        this.mListener = listener
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

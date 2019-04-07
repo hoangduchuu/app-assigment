@@ -16,5 +16,6 @@ interface MainContract{
     interface Presenter{
         fun getCandies()
         fun createSampleCandies()
+        fun increaseEatingCount(candy: Candy)
     }
 }

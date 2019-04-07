@@ -10,6 +10,7 @@ import com.hdhuu.domain.scheduler.ThreadExecutor
 import com.hdhuu.domain.usecase.CreateCandyUsecase
 
 import com.hdhuu.domain.usecase.GetCandyUsecase
+import com.hdhuu.domain.usecase.IncreaseCounterUsecase
 import com.hdhuu.home.MainContract
 import com.hdhuu.home.MainPresenter
 import com.hdhuu.scheduler.JobExecutor
@@ -33,9 +34,10 @@ val applicationModule = module(override = true) {
     factory<CandyRepository> { CandyRepositoryImpl(get(), get()) }
     factory { CreateCandyUsecase(get(), get(), get()) }
     factory { GetCandyUsecase(get(), get(), get()) }
+    factory { IncreaseCounterUsecase(get(), get(), get()) }
     factory { CandyViewMapper() }
     factory<MainContract.Presenter> { (cv: MainContract.View) ->
-        MainPresenter(cv, get(), get(),get())
+        MainPresenter(cv, get(), get(),get(),get())
     }
 
 }
