@@ -12,7 +12,7 @@ interface MainContract{
         fun fetchData()
         fun showEmptyView()
         fun hideEmptyView()
-        fun increateCurrentItem(eatingCount: Int)
+        fun increateAndChangeColorCurrentItem(eatingCount: Int, color: Int?)
     }
     interface Presenter{
         fun getCandies()

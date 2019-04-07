@@ -53,7 +53,7 @@ class MainPresenter(
         val params = IncreaseCounterUsecase.Params(candy.id!!, candy.eatingCount!!)
         increaseCounterUseCase.run(params,object : DisposableCompletableObserver() {
             override fun onComplete() {
-                view.increateCurrentItem(candy.eatingCount!!+1)
+                view.increateAndChangeColorCurrentItem(candy.eatingCount!!+1,candy.color)
             }
 
             override fun onError(e: Throwable) {

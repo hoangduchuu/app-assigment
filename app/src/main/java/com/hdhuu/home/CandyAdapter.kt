@@ -1,6 +1,7 @@
 package com.hdhuu.home
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -32,7 +33,7 @@ class CandyAdapter(var candies: ArrayList<Candy>, val context: Context) :
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.counter.text = candies[position].eatingCount.toString()
-        holder.bg.setBackgroundColor(holder.itemView.context.getColor(R.color.abc_btn_colored_borderless_text_material))
+        holder.bg.setBackgroundColor(candies[position].color!!)
         holder.itemView.setOnClickListener {
             mListener.onItemClicked(candies[position],position)
         }

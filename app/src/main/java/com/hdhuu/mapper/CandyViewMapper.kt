@@ -11,6 +11,7 @@ class CandyViewMapper : BaseMapper<Candy, CandyEntity>() {
         val dto = Candy()
         dto.eatingCount = o2.eatingCount!!
         dto.id = o2.id
+        dto.color =o2.color
         return dto
     }
 
@@ -18,6 +19,7 @@ class CandyViewMapper : BaseMapper<Candy, CandyEntity>() {
         val entity = CandyEntity()
         entity.eatingCount = o1.eatingCount
         entity.id = o1.id
+        entity.color = o1.color
         return entity
     }
 }

@@ -11,6 +11,7 @@ data class CandyDTO(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = -1,
 
-    var eatingCount: Int = 0
+    var eatingCount: Int = 0,
+    var color: Int? = null
 
 )

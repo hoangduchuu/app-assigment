@@ -3,6 +3,7 @@ package com.hdhuu.data.repository
 import com.hdhuu.data.post.mapper.CandyMapper
 import com.hdhuu.data.post.models.CandyDTO
 import com.hdhuu.data.room.AppDatabase
+import com.hdhuu.data.utils.ColorHelper
 import com.hdhuu.domain.models.CandyEntity
 import com.hdhuu.domain.repository.CandyRepository
 import io.reactivex.Completable
@@ -29,7 +30,7 @@ class CandyRepositoryImpl(val roomDB: AppDatabase, val mapper: CandyMapper) : Ca
     override fun insertCandy(): Completable {
         val data = mutableListOf<CandyDTO>()
         for (x in 0..10){
-            data.add(CandyDTO(null,0))
+            data.add(CandyDTO(null,0,ColorHelper.getRandomColor()))
         }
 
         // insert sample candy if needed

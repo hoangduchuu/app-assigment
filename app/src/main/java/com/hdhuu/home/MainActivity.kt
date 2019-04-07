@@ -68,12 +68,13 @@ class MainActivity : AppCompatActivity(), MainContract.View, CandyItemClickListe
     override fun onItemClicked(candy: Candy, position: Int) {
         currentItemView.visibility = View.VISIBLE
         currentItemPosition = position
-        increateCurrentItem(candy.eatingCount!!)
+        increateAndChangeColorCurrentItem(candy.eatingCount!!, candy.color)
 
     }
 
-    override fun increateCurrentItem(eatingCount: Int) {
+    override fun increateAndChangeColorCurrentItem(eatingCount: Int, color: Int?) {
         tvCurrentItem.text = eatingCount.toString()
+        currentItemView.setBackgroundColor(color!!)
     }
 
     private fun onCurrentItemClicked(){
