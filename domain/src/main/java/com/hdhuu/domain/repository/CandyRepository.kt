@@ -11,6 +11,6 @@ import io.reactivex.Observable
 interface CandyRepository {
     fun getAllCandy(): Observable<List<CandyEntity>>
 
-    fun increaseCandyCount(candyID: Int,currentCount: Int): Observable<List<CandyEntity>>
+    fun increaseCandyCount(candyID: Int,currentCount: Int): Completable
     fun insertCandy(): Completable
 }

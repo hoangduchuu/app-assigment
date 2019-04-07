@@ -1,8 +1,6 @@
 package com.hdhuu.home
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +34,7 @@ class CandyAdapter(var candies: ArrayList<Candy>, val context: Context) :
         holder.counter.text = candies[position].eatingCount.toString()
         holder.bg.setBackgroundColor(holder.itemView.context.getColor(R.color.abc_btn_colored_borderless_text_material))
         holder.itemView.setOnClickListener {
-            mListener.onItemClicked(candies[position])
+            mListener.onItemClicked(candies[position],position)
         }
     }
 

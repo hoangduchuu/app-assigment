@@ -7,5 +7,5 @@ import com.hdhuu.models.Candy
  */
 
 interface CandyItemClickListener{
-    fun onItemClicked(candy: Candy)
+    fun onItemClicked(candy: Candy, position: Int)
 }

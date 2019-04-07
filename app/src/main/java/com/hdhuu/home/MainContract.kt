@@ -12,6 +12,7 @@ interface MainContract{
         fun fetchData()
         fun showEmptyView()
         fun hideEmptyView()
+        fun increateCurrentItem(eatingCount: Int)
     }
     interface Presenter{
         fun getCandies()

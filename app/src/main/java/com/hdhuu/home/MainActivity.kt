@@ -2,7 +2,6 @@ package com.hdhuu.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hdhuu.R
@@ -16,6 +15,7 @@ class MainActivity : AppCompatActivity(), MainContract.View, CandyItemClickListe
 
     private val presenter: MainContract.Presenter  by inject { parametersOf(this) }
     private lateinit var candyAdapter: CandyAdapter
+    private var currentItemPosition= -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity(), MainContract.View, CandyItemClickListe
 
         setupRV()
 
+        currentItemView.setOnClickListener {
+            onCurrentItemClicked()
+        }
 
     }
 
@@ -62,7 +65,18 @@ class MainActivity : AppCompatActivity(), MainContract.View, CandyItemClickListe
         viewNodata.visibility = View.GONE
     }
 
-    override fun onItemClicked(candy: Candy) {
-        presenter.increaseEatingCount(candy)
+    override fun onItemClicked(candy: Candy, position: Int) {
+        currentItemView.visibility = View.VISIBLE
+        currentItemPosition = position
+        increateCurrentItem(candy.eatingCount!!)
+
+    }
+
+    override fun increateCurrentItem(eatingCount: Int) {
+        tvCurrentItem.text = eatingCount.toString()
+    }
+
+    private fun onCurrentItemClicked(){
+        presenter.increaseEatingCount(data[currentItemPosition])
     }
 }

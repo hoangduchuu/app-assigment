@@ -22,25 +22,14 @@ class CandyRepositoryImpl(val roomDB: AppDatabase, val mapper: CandyMapper) : Ca
         }
     }
 
-    override fun increaseCandyCount(candyID: Int, currentCount: Int): Observable<List<CandyEntity>> {
-        return Observable.create { emitter ->
-            roomDB.candyDAO().increaseEatingCount(candyID, currentCount + 1)
-                .doOnComplete {
-                    roomDB.candyDAO().getAllSugar().doOnNext {
-                        emitter.onNext(mapper.mapToEntity(it))
-                    }
-                        .doOnComplete { emitter.onComplete() }
-                        .doOnError { e -> emitter.onError(e) }
-                }
-                .doOnError { e -> emitter.onError(e) }
-        }
+    override fun increaseCandyCount(candyID: Int, currentCount: Int): Completable {
+        return roomDB.candyDAO().increaseEatingCount(candyID,eatingCount = currentCount+1)
     }
 
     override fun insertCandy(): Completable {
         val data = mutableListOf<CandyDTO>()
         for (x in 0..10){
-            val ran = kotlin.random.Random.nextInt(0,10);
-            data.add(CandyDTO(null,ran))
+            data.add(CandyDTO(null,0))
         }
 
         // insert sample candy if needed
