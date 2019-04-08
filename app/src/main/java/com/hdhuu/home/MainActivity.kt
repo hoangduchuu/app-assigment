@@ -79,5 +79,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, CandyItemClickListe
 
     private fun onCurrentItemClicked(){
         presenter.increaseEatingCount(data[currentItemPosition])
+        rv.smoothScrollToPosition(currentItemPosition)
     }
 }
