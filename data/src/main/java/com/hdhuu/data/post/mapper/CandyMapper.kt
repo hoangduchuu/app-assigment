@@ -6,7 +6,7 @@ import com.hdhuu.domain.models.CandyEntity
 /**
  * Created by Huu Hoang on 4/3/19.
  */
-class CandyMapper : BaseMapper<CandyDTO, CandyEntity>() {
+open class CandyMapper : BaseMapper<CandyDTO, CandyEntity>() {
     override fun mapToDTO(o2: CandyEntity): CandyDTO {
         val dto = CandyDTO()
         dto.eatingCount = o2.eatingCount!!
