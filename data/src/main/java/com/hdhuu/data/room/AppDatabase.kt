@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.hdhuu.data.post.models.CandyDTO
 
 @Database(entities = [CandyDTO::class], version = 1)
-abstract class AppDatabase : RoomDatabase() {
+open abstract class AppDatabase : RoomDatabase() {
 
     abstract fun candyDAO(): CandyDAO
 

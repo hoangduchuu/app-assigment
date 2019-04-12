@@ -6,7 +6,7 @@ import com.hdhuu.models.Candy
 /**
  * Created by Huu Hoang on 4/8/19.
  */
-class CandyViewMapper : BaseMapper<Candy, CandyEntity>() {
+open class CandyViewMapper : BaseMapper<Candy, CandyEntity>() {
     override fun mapToViewModel(o2: CandyEntity): Candy {
         val dto = Candy()
         dto.eatingCount = o2.eatingCount!!
